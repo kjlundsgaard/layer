@@ -21,8 +21,10 @@ def index():
 
     weather_info = weather.get_weather_data(37.7749, 122.4194)
 
-    return jsonify(weather_info)
+    temp = weather_info['temp']
+    humidity = weather_info['humidity']
 
+    return render_template('home.html', temp=temp, humidity=humidity)
 ##############################################################################
 
 if __name__ == "__main__":
@@ -31,6 +33,6 @@ if __name__ == "__main__":
     app.debug = True
 
     # Use the DebugToolbar
-    DebugToolbarExtension(app)
+    # DebugToolbarExtension(app)
 
     app.run()
