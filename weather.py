@@ -17,13 +17,14 @@ def get_weather_data(lat, lng):
     r = requests.get(request_url)
     resp = json.loads(r.text)
 
-    pp.pprint(resp)
+    # pp.pprint(resp)
 
-    results = []
-    for item in resp['currently']:
-        results.append({'temp': item['apparentTemperature'],
-                        'humidity': item['humidity']})
+    weather = {'temp': resp['currently']['apparentTemperature'],
+               'humidity': resp['currently']['humidity']
+               }
 
-    return results
+    # return results
+    # pp.pprint(weather)
+    return weather
 
-get_weather_data(37.7749, 122.4194)
+# get_weather_data(37.7749, 122.4194)

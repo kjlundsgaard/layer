@@ -14,13 +14,14 @@ app.secret_key = "supersecretkey"
 # This is horrible. Fix this so that, instead, it raises an error.
 app.jinja_env.undefined = StrictUndefined
 
+
 @app.route('/')
 def index():
     """Homepage/Shows user their lists of restaurants"""
 
+    weather = weather.get_weather_data(37.7749, 122.4194)
 
-
-    return render_template('sign_up_form.html')
+    return jsonify(weather)
 
 ##############################################################################
 
