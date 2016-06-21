@@ -19,22 +19,18 @@ app.jinja_env.undefined = StrictUndefined
 def index():
     """Homepage/Shows user their lists of restaurants"""
 
-    weather = weather.get_weather_data(37.7749, 122.4194)
+    weather_info = weather.get_weather_data(37.7749, 122.4194)
 
-    return jsonify(weather)
+    return jsonify(weather_info)
 
 ##############################################################################
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
     # that we invoke the DebugToolbarExtension
-    app.debug = False
-    app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-    connect_to_db(app, os.environ.get("DATABASE_URL"))
+    app.debug = True
 
     # Use the DebugToolbar
-    # DebugToolbarExtension(app)
-    DEBUG = "NO_DEBUG" not in os.environ
-    PORT = int(os.environ.get("PORT", 5000))
+    DebugToolbarExtension(app)
 
-    app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
+    app.run()
