@@ -20,11 +20,13 @@ def get_weather_data(lat, lng):
     # pp.pprint(resp)
 
     weather = {'temp': resp['currently']['apparentTemperature'],
-               'humidity': resp['currently']['humidity']
+               'humidity': resp['currently']['humidity'],
+               'wind': resp['currently']['windSpeed'],
+               'overall': resp['currently']['summary']
                }
 
     # return results
-    # pp.pprint(weather)
+    # pp.pprint(resp)
     return weather
 
 # get_weather_data(37.7749, 122.4194)

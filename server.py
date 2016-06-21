@@ -25,6 +25,21 @@ def index():
     humidity = weather_info['humidity']
 
     return render_template('home.html', temp=temp, humidity=humidity)
+
+
+@app.route('/weather_results.json', methods=["POST"])
+def return_weather_results():
+    """sends weather API call and sends weather results to client"""
+
+    lat = float(request.form.get('userLat'))
+    lng = float(request.form.get('userLng'))
+
+    weather_info = weather.get_weather_data(lat, lng)
+    print weather_info
+
+    return jsonify(weather_info)
+
+
 ##############################################################################
 
 if __name__ == "__main__":
