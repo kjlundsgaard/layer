@@ -1,4 +1,5 @@
 """Dress for the Weather App"""
+from pyzipcode import ZipCodeDatabase
 import os
 from jinja2 import StrictUndefined
 import psycopg2
@@ -14,12 +15,23 @@ app.secret_key = "supersecretkey"
 # This is horrible. Fix this so that, instead, it raises an error.
 app.jinja_env.undefined = StrictUndefined
 
+zcdb = ZipCodeDatabase()
 
-@app.route('/zip')
+
+@app.route('/zip', methods=["POST"])
 def show_zip_form():
-    """shows form where users can enter their zip code"""
+    """takes zip code info from user form and returns weather API call based on lat/long"""
 
-    return render_template('zip.html')
+    zipcode = int(request.form.get('zip'))
+
+    zipcode = zcdb[zipcode]
+
+    lat = zipcode.latitude
+    lng = zipcode.longitude
+
+    weather_info = weather.get_weather_data(lat, lng)
+
+    return render_template('home.html', temp=weather_info['temp'], humidity=weather_info['humidity'])
 
 
 @app.route('/')
