@@ -15,6 +15,13 @@ app.secret_key = "supersecretkey"
 app.jinja_env.undefined = StrictUndefined
 
 
+@app.route('/zip')
+def show_zip_form():
+    """shows form where users can enter their zip code"""
+
+    return render_template('zip.html')
+
+
 @app.route('/')
 def index():
     """Homepage/Shows user their lists of restaurants"""
