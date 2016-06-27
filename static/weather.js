@@ -12,15 +12,15 @@ function showWeatherResults(data) {
 
     console.log(data);
 
-    temp = data.temp;
-    humidity = data.humidity;
-    wind = data.wind;
-    overall = data.overall;
+    var temp = data.temp;
+    var humidity = data.humidity;
+    var wind = data.wind;
+    var overall = data.overall;
 
-    info = "TEMP IS " + temp +
+    var info = "TEMP IS " + temp +
             " HUMIDITY IS " + humidity +
-            "IT IS THIS MUCH WINDY: " + wind +
-            "overall it is " + overall;
+            " IT IS THIS MUCH WINDY: " + wind +
+            " overall it is " + overall;
 
     $('#weather').html(info);
 }
@@ -32,4 +32,3 @@ $('#click').click(function(){
     }
 );
 
-// $("#")
